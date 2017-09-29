@@ -9,7 +9,7 @@ package rocketsimulator;
  *
  * @author Sampo
  */
-public class Main {
+public class RocketSilumator {
     public static void main(String[] args) {
         Simulator simulator = new Simulator();
         simulator.simu();
