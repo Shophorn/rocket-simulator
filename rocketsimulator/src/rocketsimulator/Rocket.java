@@ -10,7 +10,67 @@ package rocketsimulator;
  * @author Samu
  */
 public class Rocket {
+    private double fuelAmmount;
+    private Engine engine;
+    
+    private int height;
     private double speed;
-    private double fuleAmmount;
+
+
+    public Rocket(double fuelAmmount, Engine engine) {
+        this.speed = 100;
+        this.height = 0;
+        this.fuelAmmount = fuelAmmount;
+        this.engine = engine;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public double getFuelAmmount() {
+        return fuelAmmount;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+    
+    
+
+    public void setFuelAmmount(double fuelAmmount) {
+        this.fuelAmmount = fuelAmmount;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+    
+    
+    
+    public String go() {
+        while(this.fuelAmmount > 0) {
+            this.fuelAmmount = this.engine.go(this.getFuelAmmount());
+            this.height += this.speed;
+            
+        }
+        return "Out of fuel";
+    }
+    
+    
+    
+    
     
 }
