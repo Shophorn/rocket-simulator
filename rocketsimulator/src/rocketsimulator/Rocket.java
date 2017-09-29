@@ -24,6 +24,15 @@ public class Rocket {
         this.engine = engine;
     }
 
+    public Rocket() {
+        this.speed = 100;
+        this.height = 0;
+        this.fuelAmmount = 0;
+        this.engine = new Engine();
+    }
+    
+    
+
     public double getHeight() {
         return height;
     }

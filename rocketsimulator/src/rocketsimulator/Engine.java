@@ -20,6 +20,13 @@ public class Engine {
         this.weight = weight;
     }
 
+    public Engine() {
+        this.thrust = 0;
+        this.consumption = 0;
+        this.weight = 0;
+    }
+    
+
     public double getThrust() {
         return thrust;
     }
