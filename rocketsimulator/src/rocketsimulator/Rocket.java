@@ -7,8 +7,10 @@ package rocketsimulator;
 
 /**
  *
- * @author Leo
+ * @author Samu
  */
 public class Rocket {
+    private double speed;
+    private double fuleAmmount;
     
 }
