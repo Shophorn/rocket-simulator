@@ -10,5 +10,7 @@ package rocketsimulator;
  * @author Leo
  */
 public class Simulator {
-    
+    public String launch() {
+        return "laukaistu";
+    }
 }
