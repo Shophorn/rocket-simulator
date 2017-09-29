@@ -33,8 +33,13 @@ public class UI extends GridPane
         Slider fuelSlider = new Slider (Values.minRocketFuel, Values.maxRocketFuel, Values.minRocketFuel);
         Slider consumptionSlider = new Slider (Values.minRocketFuelConsumption, Values.maxRocketFuelConsumption, Values.minRocketFuelConsumption);
         
-        inputGrid.addRow(0, fuelLabel, fuelField);
-        inputGrid.addRow(1, consumptionLabel, consumptionField);
+        inputGrid.addRow(0, fuelLabel, fuelSlider, fuelField);
+        inputGrid.addRow(1, consumptionLabel, consumptionSlider, consumptionField);
+        
+        
+        Label outputLabel = new Label ("Testing output");
+  
+        outputGrid.add(outputLabel, 0, 0);
     }
     
 }
