@@ -11,4 +11,8 @@ package rocketsimulator;
  */
 public class Simulator {
     
+    
+    public String launch() {
+        return "laukaistu";
+    }
 }
