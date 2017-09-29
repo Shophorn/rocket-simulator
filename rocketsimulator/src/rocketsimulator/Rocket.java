@@ -24,6 +24,15 @@ public class Rocket {
         this.engine = engine;
     }
 
+    public Rocket() {
+        this.speed = 100;
+        this.height = 0;
+        this.fuelAmmount = 0;
+        this.engine = new Engine();
+    }
+    
+    
+
     public double getHeight() {
         return height;
     }
@@ -58,7 +67,9 @@ public class Rocket {
         this.engine = engine;
     }
     
-    
+    public void setEngineConsumption(double consumption) {
+        this.engine.setConsumption(consumption);
+    }
     
     public String go() {
         while(this.fuelAmmount > 0) {
