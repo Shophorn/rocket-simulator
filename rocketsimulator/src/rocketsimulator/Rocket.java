@@ -67,7 +67,9 @@ public class Rocket {
         this.engine = engine;
     }
     
-    
+    public void setEngineConsumption(double consumption) {
+        this.engine.setConsumption(consumption);
+    }
     
     public String go() {
         while(this.fuelAmmount > 0) {
