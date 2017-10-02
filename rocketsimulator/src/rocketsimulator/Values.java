@@ -7,7 +7,7 @@ package rocketsimulator;
 
 /**
  *
- * @author Leo
+ * @author Leo Tamminen
  */
 public class Values
 {

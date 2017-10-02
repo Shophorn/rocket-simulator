@@ -18,7 +18,6 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 
 public class UI extends BorderPane
@@ -73,7 +72,7 @@ public class UI extends BorderPane
         
         // BUTTONS
         Button launchButton = new Button ("LAUNCH");
-        launchButton.setOnAction ((event)-> pullOutput ());
+        launchButton.setOnAction ((event)-> printOutput ());
         launchButton.setMinWidth (buttonWidth);
         ioGrid.add(launchButton, 0, BUTTON_ROW);
         GridPane.setHalignment (launchButton, HPos.CENTER);
@@ -129,13 +128,15 @@ public class UI extends BorderPane
         messageLabel.setText(message);
     }
     
-    private void pullOutput ()
+    private void printOutput ()
     {
+        GridPane.setValignment(outputLabel, VPos.TOP);
         outputLabel.setText (simulator.launch());
     }
     
     private void clearOutput ()
     {
+       GridPane.setValignment(outputLabel, VPos.CENTER);
        outputLabel.setText(DEFAULT_OUTPUT);
     }
     
