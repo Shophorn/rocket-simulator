@@ -22,7 +22,7 @@ public class Simulator {
     }
     
     public void simu(){
-        setFuelAmmount(1);
+        setFuelAmmount(3);
         setFuelConsumption(1);
         double altitude;
         double atmosphere = 60000;
@@ -33,7 +33,15 @@ public class Simulator {
     }
     
     public String launch() {
-        return "laukaistu";
+        String wallOfText;
+        wallOfText = "Liftoff!\n";
+        simu();
+        if (rocket.getFuelAmmount()==0){
+            wallOfText += "You tried to launch your rocket, but it had no fuel!\n";
+        }
+        
+        
+        return wallOfText;
     }
     
 }
