@@ -72,17 +72,23 @@ public class Rocket {
         this.engine.setConsumption(consumption);
     }
     
-    public String go() {
+    
+    
+    public String go(Planet planet) {
         String info = new String();
-        while(this.fuelAmount > 0) {
-            this.fuelAmount = this.engine.go(this.getFuelAmount());
+        double fuel = this.fuelAmount;
+        while(fuel > 0) {
+            fuel = this.engine.go(fuel);
             this.height += this.speed;
-            if (this.height>300000000) {
+            System.out.println("test2");
+            if (this.height>planet.getAtmosphereLimit()) {
                 info = "Rocket has succesfully escaped the gravity of earth!\n";
                 break;
             }
-            info = "Rocket is out of fuel\n";
+            info = "Rocket is out of fuel\nRocket was "+this.height/1000+"km high when running out of fuel\n";
+            
         }
+        this.height = 0;
         return info;
     }
     

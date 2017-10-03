@@ -28,16 +28,18 @@ public class Simulator {
         double atmosphere = 60000;
         
         
-        rocket.go();
+        rocket.go(new Planet());
         System.out.println(rocket.getHeight());
     }
     
     public String launch() {
+        Planet planet = new Planet();
         String wallOfText;
         wallOfText = "Liftoff!\n";
         if (rocket.getFuelAmount()==0){
             wallOfText += "...or not\nYou tried to launch your rocket, but it had no fuel!\n";
         }
+        wallOfText += rocket.go(planet);
         
         return wallOfText;
     }
