@@ -63,8 +63,8 @@ public class UI extends BorderPane
         messageLabel = new Label ();
 
         // INPUT
-        addSliderRow ("Fuel amount" , Values.minRocketFuel, Values.maxRocketFuel);
-        addSliderRow ("Fuel consumption", Values.minRocketFuelConsumption, Values.maxRocketFuelConsumption);
+        addSliderRow ("Fuel amount" , Values.minRocketFuel, Values.maxRocketFuel, RocketStat.FUEL_AMOUNT);
+        addSliderRow ("Fuel consumption", Values.minRocketFuelConsumption, Values.maxRocketFuelConsumption, RocketStat.FUEL_CONSUMPTION);
         
           
         // OUTPUT
@@ -140,7 +140,7 @@ public class UI extends BorderPane
        outputLabel.setText(DEFAULT_OUTPUT);
     }
     
-    private void addSliderRow (String labelText, double minValue, double maxValue)
+    private void addSliderRow (String labelText, double minValue, double maxValue, RocketStat type)
     {
         Label label = new Label (labelText);
         label.setPadding(labelInsets);
@@ -152,6 +152,7 @@ public class UI extends BorderPane
             (observabelValue, oldValue, newValue) -> {
                 double value = newValue.doubleValue ();
                 field.setText(decimalFormat.format (value));
+                simulator.setRocketStat(type, value);
             }
         );
         

@@ -10,24 +10,24 @@ package rocketsimulator;
  * @author Samu
  */
 public class Rocket {
-    private double fuelAmmount;
+    private double fuelAmount;
     private Engine engine;
     
     private int height;
     private double speed;
 
 
-    public Rocket(double fuelAmmount, Engine engine) {
+    public Rocket(double fuelAmount, Engine engine) {
         this.speed = 100;
         this.height = 0;
-        this.fuelAmmount = fuelAmmount;
+        this.fuelAmount = fuelAmount;
         this.engine = engine;
     }
 
     public Rocket() {
         this.speed = 100;
         this.height = 0;
-        this.fuelAmmount = 0;
+        this.fuelAmount = 0;
         this.engine = new Engine();
     }
     
@@ -37,8 +37,8 @@ public class Rocket {
         return height;
     }
 
-    public double getFuelAmmount() {
-        return fuelAmmount;
+    public double getFuelAmount() {
+        return fuelAmount;
     }
 
     public double getSpeed() {
@@ -52,7 +52,8 @@ public class Rocket {
     
 
     public void setFuelAmmount(double fuelAmmount) {
-        this.fuelAmmount = fuelAmmount;
+        this.fuelAmount = fuelAmmount;
+        System.out.println("test succesfull");
     }
 
     public void setHeight(int height) {
@@ -73,14 +74,14 @@ public class Rocket {
     
     public String go() {
         String info = new String();
-        while(this.fuelAmmount > 0) {
-            this.fuelAmmount = this.engine.go(this.getFuelAmmount());
+        while(this.fuelAmount > 0) {
+            this.fuelAmount = this.engine.go(this.getFuelAmount());
             this.height += this.speed;
             if (this.height>300000000) {
-                info = "Rocket has succesfully escaped the gravity of earth!";
+                info = "Rocket has succesfully escaped the gravity of earth!\n";
                 break;
             }
-            info = "Rocket is out of fuel";
+            info = "Rocket is out of fuel\n";
         }
         return info;
     }

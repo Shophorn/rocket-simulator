@@ -35,13 +35,23 @@ public class Simulator {
     public String launch() {
         String wallOfText;
         wallOfText = "Liftoff!\n";
-        simu();
-        if (rocket.getFuelAmmount()==0){
-            wallOfText += "You tried to launch your rocket, but it had no fuel!\n";
+        if (rocket.getFuelAmount()==0){
+            wallOfText += "...or not\nYou tried to launch your rocket, but it had no fuel!\n";
         }
-        
         
         return wallOfText;
     }
+    
+    public void setRocketStat(RocketStat type, double value) {
+        switch (type) {
+            case FUEL_AMOUNT:
+                rocket.setFuelAmmount(value);
+                break;
+            case FUEL_CONSUMPTION:
+                rocket.setEngineConsumption(value);
+                break;
+        }
+    }
+    
     
 }
