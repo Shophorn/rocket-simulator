@@ -1,5 +1,9 @@
 package rocketsimulator;
 
+/**
+ * 
+ * @author Samu Tikkanen
+ */
 public abstract class Part {
-    abstract public double getWeight();    
+    public abstract double getWeight();    
 }

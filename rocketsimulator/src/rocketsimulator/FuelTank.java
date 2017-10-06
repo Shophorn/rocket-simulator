@@ -7,55 +7,51 @@ package rocketsimulator;
 
 /**
  *
- * @author Samu
+ * @author Samu Tikkanen and Leo Tamminen
  */
 public class FuelTank extends Part{
-    private double fuelAmmount;
-    private double maxAmmount;
-    private double weight;
-
-    public FuelTank(int maxAmmount) {
-        this.fuelAmmount = maxAmmount;
-        this.maxAmmount = this.fuelAmmount;
-        this.weight = this.fuelAmmount*0.02;
-    }
-
-    public FuelTank() {
-        this(0);
+    private double amount;
+    private double capacity;
+    private double fuelDensity = 0.8; // density of Kerosene, can be made configurable
+    private double ownWeight;
+    
+    public FuelTank(double capacity) {
+        this.amount = capacity;
+        this.capacity = capacity;
+        this.ownWeight = this.amount*0.02;
     }
 
     
     
-    public double getFuelAmmount() {
-        return fuelAmmount;
+    public double getAmount() {
+        return amount;
     }
 
-    public double getMaxAmmount() {
-        return maxAmmount;
+    public double getCapacity() {
+        return capacity;
     }
 
-    public double getTankWeight() {
-        return weight;
-    }
-    
     @Override
     public double getWeight() {
-        return this.weight+this.fuelAmmount;
+        return ownWeight + amount * fuelDensity;
     }
     
     
-    
+    // MIKÄ TÄMÄN AJATUS ON??
     public void setFuelTankType(double i) {
-        this.fuelAmmount = 50+i*50;
-        this.maxAmmount = this.fuelAmmount;
-        this.weight = i;
+        this.amount = 50+i*50;
+        this.capacity = this.amount;
+        this.ownWeight = i;
     } 
     
     
     public double useFuel(double usage) {
-        if (this.fuelAmmount < usage) {
-            return fuelAmmount/usage;
+        if (amount < usage) {
+            double percent = amount/usage;
+            amount = 0;
+            return percent;
         } else {
+            amount -= usage;
             return 1;
         }
     }

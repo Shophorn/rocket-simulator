@@ -18,7 +18,7 @@ public class Rocket {
     
     // MOVEMENT
     private double altitude = 0;
-    private double speed = 0;
+    private double speed = 0.0;
     
     private RocketEndStatus endStatus;
     public RocketEndStatus getEndStatus () { return endStatus; }
@@ -61,7 +61,7 @@ public class Rocket {
     
     private double getFuelAmount()
     {
-        return fuelTank.getFuelAmmount();
+        return fuelTank.getAmount();
     }
     
     double gravityEscapeLimit = 0.1;
@@ -73,10 +73,13 @@ public class Rocket {
         double gravity = planet.getGravity(altitude, weight);
         double acceleration = (thrustForce - gravity) / weight; 
         
+        Program.sendMessage(String.valueOf(weight));
+
         speed += acceleration;
-        
+         
         boolean goingUp = speed > 0.0;
         boolean outOfOrbit = gravity <= gravityEscapeLimit;
+
         if (goingUp && !outOfOrbit) {
             altitude += speed;
         } else {
