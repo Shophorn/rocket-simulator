@@ -53,7 +53,7 @@ public class Simulator {
                 break;
             case FAILED_TO_TAKEOFF:
                 // Pitäiskö tollanen due to juttu?
-                launchResult = "Rocket failed to take off due to: ";
+                launchResult = "Rocket failed to take off";// due to: ";
                 break;
             case ESCAPED_ORBIT:
                 launchResult = "Rocket has reached the orbit! Congratulation! ";
