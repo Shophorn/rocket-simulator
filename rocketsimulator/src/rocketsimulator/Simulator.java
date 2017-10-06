@@ -64,7 +64,7 @@ public class Simulator {
             default:
                 
         }
-        launchResult += String.format("\nRocket reached the altitude of: %f\nTime elapsed: %f",rocket.getAltitude(),time);
+        launchResult += String.format("\nRocket reached the altitude of: %f\nTime elapsed: %d",rocket.getAltitude(),time);
         
         return launchResult;
         
