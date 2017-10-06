@@ -109,7 +109,7 @@ public class Rocket {
         while(fuel > 0) {
             fuel = this.engine.go(fuel);
             this.height += this.speed;
-            if (this.height>planet.atmosphere) {
+            if (this.height>planet.atmosphereHeight) {
                 info = "Rocket has succesfully escaped the atmosphere of "+planet.name+"!";
                 break;
             }
