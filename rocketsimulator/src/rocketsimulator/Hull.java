@@ -20,7 +20,7 @@ public class Hull {
 
     public Hull() {
         this(0,0);
-    }
+    } 
 
     public double getWeight() {
         return weight;
