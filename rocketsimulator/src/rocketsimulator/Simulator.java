@@ -11,9 +11,10 @@ package rocketsimulator;
  */
 public class Simulator {
 
-    private Engine engine = new Engine();
-    private Hull hull = new Hull();
-    private FuelTank fuelTank = new FuelTank();
+
+    
+    private double fuelTankCapacity = 0.0;
+    private double enginePower = 0.0;
     
 //    private Rocket rocket = new Rocket(engine, hull, fuelTank);
     
@@ -32,6 +33,10 @@ public class Simulator {
 
     public String launch() {
 
+        Engine engine = new Engine(enginePower);
+        Hull hull = new Hull();
+        FuelTank fuelTank = new FuelTank(fuelTankCapacity);
+        
         Rocket rocket = new Rocket(engine, hull, fuelTank);
         
         // SAMPO SIIRSIN NÄMÄ TÄNNE
@@ -39,11 +44,9 @@ public class Simulator {
         String launchResult = "No result yet.";
         
         boolean go = true;
-        while(go) {
-                  
-        go = rocket.go(planet);
-        time++;
-        
+        while(go) {       
+            go = rocket.go(planet);
+            time++;
         }
         
         
@@ -56,7 +59,7 @@ public class Simulator {
                 launchResult = "Rocket failed to take off";// due to: ";
                 break;
             case ESCAPED_ORBIT:
-                launchResult = "Rocket has reached the orbit! Congratulation! ";
+                launchResult = "Rocket has escaped the orbit! Congratulation! ";
                 break;
             case GENERIC_MISHAP:
                 
@@ -72,12 +75,11 @@ public class Simulator {
     
     public void setRocketStat(RocketStat type, double value) {
         switch (type) {
-            case FUEL_AMOUNT:
-//                rocket.setFuelAmmount(value);
+            case FUELTANK_CAPACITY:
+                fuelTankCapacity = value;
                 break;
-            
-            case ENGINE_TYPE:
-//                rocket.chooseEngine(value);
+            case ENGINE_POWER:
+                enginePower = value;
                 break;
         }
     }

@@ -14,7 +14,7 @@ public class Engine extends Part {
     private double consumption;
     private double weight;
     //kaikki arvot tonneissa, thrust tuhatta newtonia
-    
+    /*
     public Engine(double thrust, double consumption, double weight) {
         this.thrust = thrust;
         this.consumption = consumption;
@@ -24,8 +24,17 @@ public class Engine extends Part {
     public Engine() {
         this(0,0,0);
     }
-
+    */
+    public Engine (double power)
+    {
+        // JOTAI TÄLLASTA EHKÄ
+        thrust = power;
+        consumption = power * 0.2;
+        weight = power * 0.2;
+    }
+    
     public double getThrust() {
+        // DO CALCULATIONS HERE https://www.grc.nasa.gov/www/k-12/airplane/rockth.html
         return thrust;
     }
 
@@ -66,10 +75,4 @@ public class Engine extends Part {
     public String toString() {
         return ("weight: "+this.getWeight()+ ", thrust: "+this.getThrust());
     }
-    
-    public double go(double fuel) {
-        return (fuel-this.consumption);
-    }
-    
-    
 }

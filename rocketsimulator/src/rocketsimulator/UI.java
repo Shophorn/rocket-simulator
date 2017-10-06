@@ -63,9 +63,8 @@ public class UI extends BorderPane
         messageLabel = new Label ();
 
         // INPUT
-        addSliderRow ("Fuel amount" , Values.minRocketFuel, Values.maxRocketFuel, RocketStat.FUEL_AMOUNT);
-        addSliderRow ("Engine type", Values.minRocketEngineType, Values.maxRocketEngineType, RocketStat.ENGINE_TYPE);
-        addSliderRow ("Fuel Tank Volume", Values.minFuelTankVolume, Values.maxFuelTankVolume, RocketStat.FUELTANK_VOLUME);
+        addSliderRow ("Engine Power" , Values.minEnginePower, Values.maxEnginePower, RocketStat.ENGINE_POWER);
+        addSliderRow ("Fuel Tank Capacity", Values.minFuelTankVolume, Values.maxFuelTankVolume, RocketStat.FUELTANK_CAPACITY);
           
         // OUTPUT
         clearOutput ();
