@@ -10,13 +10,12 @@ package rocketsimulator;
  * @author Leo
  */
 public class Simulator {
-    
-   // private Rocket rocket = new Rocket();
+
     private Engine engine = new Engine();
     private Hull hull = new Hull();
     private FuelTank fuelTank = new FuelTank();
     
-    private Rocket rocket = new Rocket(engine, hull, fuelTank);
+//    private Rocket rocket = new Rocket(engine, hull, fuelTank);
     
     private Planet planet = Planet.EARTH;
     
@@ -24,33 +23,21 @@ public class Simulator {
     {
         planet = value;
     }
-    public void setFuelAmmount(double fuel){
-        rocket.setFuelAmmount(fuel);
-    }
+
     
     public void setFuelConsumption(double consumption){
-        rocket.setEngineConsumption(consumption);
+//        rocket.setEngineConsumption(consumption);
     }
     
-//    public void simu(){
-//        setFuelAmmount(3);
-//        setFuelConsumption(1);
-//        double altitude;
-//        double atmosphere = 60000;
-//        
-//        
-//        rocket.go(Planet.EARTH);
-//        System.out.println(rocket.getHeight());
-//    }
-    int time = 0;
-    String launchResult;
+
     public String launch() {
-        //SAMPO TEE TÄNNE SE LOOP
+
+        Rocket rocket = new Rocket(engine, hull, fuelTank);
         
+        // SAMPO SIIRSIN NÄMÄ TÄNNE
+        int time = 0;
+        String launchResult = "No result yet.";
         
-        
-        // KATELLAA TOTA PALAUTUSTA KOHTA
-        Rocket rocket = new Rocket();
         boolean go = true;
         while(go) {
                   
@@ -83,11 +70,11 @@ public class Simulator {
     public void setRocketStat(RocketStat type, double value) {
         switch (type) {
             case FUEL_AMOUNT:
-                rocket.setFuelAmmount(value);
+//                rocket.setFuelAmmount(value);
                 break;
             
             case ENGINE_TYPE:
-                rocket.chooseEngine(value);
+//                rocket.chooseEngine(value);
                 break;
         }
     }
