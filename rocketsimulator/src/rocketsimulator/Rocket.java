@@ -10,12 +10,10 @@ package rocketsimulator;
  * @author Samu Tikkanen, Leo Tamminen
  */
 public class Rocket {
-    private double fuelAmount;
+    // PARTS
     private Engine engine;
     private Hull hull;
-    
-    // private int height;
-    // private double speed;
+    private FuelTank fuelTank;
 
     // MOVEMENT
     private double altitude = 0;
@@ -24,41 +22,18 @@ public class Rocket {
     private RocketEndStatus endStatus;
     public RocketEndStatus getEndStatus () { return endStatus; }
     
-    public Rocket(double fuelAmount, Engine engine, Hull hull) {
-        this.fuelAmount = fuelAmount;
-        this.engine = engine;
-        this.hull = hull;
-    }
-
     public Rocket() {
-        this(0, new Engine(), new Hull());
+        engine = new Engine ();
+        hull = new Hull ();
+        fuelTank = new FuelTank ();
     }
     
     public double getAltitude() {
         return altitude;
     }
-
-    public double getFuelAmount() {
-        return fuelAmount;
-    }
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public Engine getEngine() {
-        return engine;
-    }
     
-    public Hull getHull() {
-        return hull;
-    }
-    
-    
-
     public void setFuelAmmount(double value) {
         this.fuelAmount = value;
-        System.out.println("test succesfull");
     }
 
 
@@ -73,13 +48,8 @@ public class Rocket {
         this.engine.setConsumption(consumption);
     }
     
-    public void getEngineConsumption() {
-        this.engine.getConsumption();
-    }
-    
-    
-    public double getMass() {
-        return this.engine.getWeight()+this.hull.getWeight()+this.getFuelAmount();
+    private double getCombinedWeight() {
+        return engine.getWeight() + hull.getWeight() + fuelTank.getWeight();
     }
     
     public void chooseEngine(double i) {
@@ -90,43 +60,23 @@ public class Rocket {
     //muuta kuin itse kiinteää rakettia niin edel oleval taval vois tarkistaa räjähtääkö
     //se raketti sen takia ettei rungko oo tarpeeks tukeva
     public boolean hullFailure() {
-        if (this.hull.getWeight() < this.getMass()/20) {
-            return true;
-        } else {
-            return false;
-        }
+        return hull.getWeight() < getCombinedWeight() /20;
     }
     
     public boolean go(Planet planet)
     {
-        speed += (engine.getThrust() + planet.getGravity(altitude, getMass())) / getMass();
+        double weight = getCombinedWeight ();
+        double fuelUsage = fuelTank.useFuel(engine.getConsumption());
+        double thrustForce = engine.getThrust() * fuelUsage;
+        double gravity = planet.getGravity(altitude, weight);
+        double acceleration = (thrustForce - gravity) / weight; 
+        
+        speed += acceleration;
+        
         boolean goingUp = speed > 0.0;
         if (goingUp) {
             altitude += speed;
         }
         return goingUp;
-    }
-    
-    
-//    public String go(Planet planet, boolean badstuff) {
-//        String info = new String();
-//        this.height = 0;
-//        double fuel = this.fuelAmount;
-//        while(fuel > 0) {
-//            fuel = this.engine.go(fuel);
-//            this.height += this.speed;
-//            if (this.height>planet.atmosphereHeight) {
-//                info = "Rocket has succesfully escaped the atmosphere of "+planet.name+"!";
-//                break;
-//            }
-//            info = "Rocket is out of fuel\nRocket was "+this.height/1000+"km high when running out of fuel\n";
-//            
-//        }
-//        return info;
-//    }
-    
-    
-    
-    
-    
+    } 
 }
