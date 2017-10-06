@@ -12,23 +12,22 @@ package rocketsimulator;
 public class Rocket {
     private double fuelAmount;
     private Engine engine;
+    private Hull hull;
     
     private int height;
     private double speed;
 
 
-    public Rocket(double fuelAmount, Engine engine) {
+    public Rocket(double fuelAmount, Engine engine, Hull hull) {
         this.speed = 100;
         this.height = 0;
         this.fuelAmount = fuelAmount;
         this.engine = engine;
+        this.hull = hull;
     }
 
     public Rocket() {
-        this.speed = 100;
-        this.height = 0;
-        this.fuelAmount = 0;
-        this.engine = new Engine();
+        this(0, new Engine(), new Hull());
     }
     
     
@@ -47,6 +46,10 @@ public class Rocket {
 
     public Engine getEngine() {
         return engine;
+    }
+    
+    public Hull getHull() {
+        return hull;
     }
     
     
@@ -68,27 +71,47 @@ public class Rocket {
         this.engine = engine;
     }
     
+    
+    
+    
     public void setEngineConsumption(double consumption) {
         this.engine.setConsumption(consumption);
     }
     
+    public void getEngineConsumption() {
+        this.engine.getConsumption();
+    }
     
+    
+    public double currentWeight() {
+        return this.engine.getWeight()+this.hull.getWeight()+this.getFuelAmount();
+    }
+    
+    //tarkistaa "rungon kestävyyden", nopee netistä luin et 90%bensaa ja oliko noin4% painosta
+    //muuta kuin itse kiinteää rakettia niin edel oleval taval vois tarkistaa räjähtääkö
+    //se raketti sen takia ettei rungko oo tarpeeks tukeva
+    public boolean hullFailure() {
+        if (this.hull.getWeight() < this.currentWeight()/20) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     public String go(Planet planet) {
         String info = new String();
+        this.height = 0;
         double fuel = this.fuelAmount;
         while(fuel > 0) {
             fuel = this.engine.go(fuel);
             this.height += this.speed;
-            System.out.println("test2");
             if (this.height>planet.getAtmosphereLimit()) {
-                info = "Rocket has succesfully escaped the gravity of earth!\n";
+                info = "Rocket has succesfully escaped the atmosphere of earth!\n";
                 break;
             }
             info = "Rocket is out of fuel\nRocket was "+this.height/1000+"km high when running out of fuel\n";
             
         }
-        this.height = 0;
         return info;
     }
     
