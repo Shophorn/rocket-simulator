@@ -37,13 +37,21 @@ public class Simulator {
 //        rocket.go(Planet.EARTH);
 //        System.out.println(rocket.getHeight());
 //    }
-    
-    public String launch() {
+    int time = 0;
+    public boolean launch() {
         //SAMPO TEE TÄNNE SE LOOP
         
         
         
         // KATELLAA TOTA PALAUTUSTA KOHTA
+        Rocket rocket = new Rocket();
+        boolean go = true;
+        while(go) {
+                  
+        go = rocket.go(planet);
+        time++;
+        
+        }
         String wallOfText;
         wallOfText = "Liftoff!\n";
         if (rocket.getFuelAmount()==0){
@@ -51,7 +59,25 @@ public class Simulator {
         }
         wallOfText += rocket.go(planet);
         
-        return wallOfText;
+        String launchResult;
+        switch(rocket.getEndStatus()){
+            case OUT_OF_FUEL:
+                launchResult = "Rocket ran out of fuel";
+                break;
+            case FAILED_TO_TAKEOFF:
+                // Pitäiskö tollanen due to juttu?
+                launchResult = "Rocket failed to take off due to: ";
+                break;
+            case ESCAPED_ORBIT:
+                launchResult = "Rocket has reached the orbit! Congratulation! ";
+                break;
+            default:
+                
+        }
+        //kommentti
+        
+        return "Altitude: %f\nTime: %f\n",rocket.getAltitude(), time;
+        
     }
     
     public void setRocketStat(RocketStat type, double value) {
@@ -59,9 +85,7 @@ public class Simulator {
             case FUEL_AMOUNT:
                 rocket.setFuelAmmount(value);
                 break;
-            case FUEL_CONSUMPTION:
-                rocket.setEngineConsumption(value);
-                break;
+            
             case ENGINE_TYPE:
                 rocket.chooseEngine(value);
                 break;
