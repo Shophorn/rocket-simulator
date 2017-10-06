@@ -14,6 +14,9 @@ public class Values
     public static final double minRocketFuel = 0.0;
     public static final double maxRocketFuel = 200.0;
     
+    public static final double minFuelTankVolume = 0.0;
+    public static final double maxFuelTankVolume = 1000.0;
+    
     public static final double minRocketEngineType = 0.0;
     public static final double maxRocketEngineType = 10.0;
 }

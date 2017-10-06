@@ -9,7 +9,7 @@ package rocketsimulator;
  *
  * @author Samu
  */
-public class Hull {
+public class Hull extends Part{
     private double weight;
     private double gargoweight;
 
@@ -21,7 +21,8 @@ public class Hull {
     public Hull() {
         this(0,0);
     } 
-
+    
+    @Override
     public double getWeight() {
         return weight;
     }
