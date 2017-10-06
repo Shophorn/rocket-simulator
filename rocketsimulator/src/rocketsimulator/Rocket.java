@@ -7,20 +7,24 @@ package rocketsimulator;
 
 /**
  *
- * @author Samu
+ * @author Samu Tikkanen, Leo Tamminen
  */
 public class Rocket {
     private double fuelAmount;
     private Engine engine;
     private Hull hull;
     
-    private int height;
-    private double speed;
+    // private int height;
+    // private double speed;
 
-
+    // MOVEMENT
+    private double altitude = 0;
+    private double speed = 0;
+    
+    private RocketEndStatus endStatus;
+    public RocketEndStatus getEndStatus () { return endStatus; }
+    
     public Rocket(double fuelAmount, Engine engine, Hull hull) {
-        this.speed = 100;
-        this.height = 0;
         this.fuelAmount = fuelAmount;
         this.engine = engine;
         this.hull = hull;
@@ -30,10 +34,8 @@ public class Rocket {
         this(0, new Engine(), new Hull());
     }
     
-    
-
-    public double getHeight() {
-        return height;
+    public double getAltitude() {
+        return altitude;
     }
 
     public double getFuelAmount() {
@@ -54,18 +56,11 @@ public class Rocket {
     
     
 
-    public void setFuelAmmount(double fuelAmmount) {
-        this.fuelAmount = fuelAmmount;
+    public void setFuelAmmount(double value) {
+        this.fuelAmount = value;
         System.out.println("test succesfull");
     }
 
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public void setSpeed(double speed) {
-        this.speed = speed;
-    }
 
     public void setEngine(Engine engine) {
         this.engine = engine;
@@ -102,22 +97,33 @@ public class Rocket {
         }
     }
     
-    public String go(Planet planet) {
-        String info = new String();
-        this.height = 0;
-        double fuel = this.fuelAmount;
-        while(fuel > 0) {
-            fuel = this.engine.go(fuel);
-            this.height += this.speed;
-            if (this.height>planet.atmosphereHeight) {
-                info = "Rocket has succesfully escaped the atmosphere of "+planet.name+"!";
-                break;
-            }
-            info = "Rocket is out of fuel\nRocket was "+this.height/1000+"km high when running out of fuel\n";
-            
+    public boolean go(Planet planet)
+    {
+        speed += (engine.getThrust() + planet.getGravity(altitude, getMass())) / getMass();
+        boolean goingUp = speed > 0.0;
+        if (goingUp) {
+            altitude += speed;
         }
-        return info;
+        return goingUp;
     }
+    
+    
+//    public String go(Planet planet, boolean badstuff) {
+//        String info = new String();
+//        this.height = 0;
+//        double fuel = this.fuelAmount;
+//        while(fuel > 0) {
+//            fuel = this.engine.go(fuel);
+//            this.height += this.speed;
+//            if (this.height>planet.atmosphereHeight) {
+//                info = "Rocket has succesfully escaped the atmosphere of "+planet.name+"!";
+//                break;
+//            }
+//            info = "Rocket is out of fuel\nRocket was "+this.height/1000+"km high when running out of fuel\n";
+//            
+//        }
+//        return info;
+//    }
     
     
     

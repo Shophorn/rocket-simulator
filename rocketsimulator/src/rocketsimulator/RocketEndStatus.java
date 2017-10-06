@@ -7,11 +7,10 @@ package rocketsimulator;
 
 /**
  *
- * @author Sampo
+ * @author Leo Tamminen
  */
-public class SimulatorTest {
-    public static void main(String[] args) {
-        Simulator simulator = new Simulator();
-        simulator.simu();
-    }
+public enum RocketEndStatus {
+    FAILED_TO_TAKEOFF,
+    OUT_OF_FUEL,
+    ESCAPED_ORBIT
 }
