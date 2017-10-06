@@ -35,6 +35,7 @@ public class Engine extends Part {
     
     public double getThrust() {
         // DO CALCULATIONS HERE https://www.grc.nasa.gov/www/k-12/airplane/rockth.html
+        // Thurst = mass*acceleration;??
         return thrust;
     }
 
