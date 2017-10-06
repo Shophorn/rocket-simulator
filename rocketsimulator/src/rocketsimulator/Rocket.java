@@ -83,7 +83,7 @@ public class Rocket {
     }
     
     
-    public double currentWeight() {
+    public double getMass() {
         return this.engine.getWeight()+this.hull.getWeight()+this.getFuelAmount();
     }
     
@@ -95,7 +95,7 @@ public class Rocket {
     //muuta kuin itse kiinteää rakettia niin edel oleval taval vois tarkistaa räjähtääkö
     //se raketti sen takia ettei rungko oo tarpeeks tukeva
     public boolean hullFailure() {
-        if (this.hull.getWeight() < this.currentWeight()/20) {
+        if (this.hull.getWeight() < this.getMass()/20) {
             return true;
         } else {
             return false;
