@@ -24,9 +24,6 @@ public class Engine extends Part {
     public Engine() {
         this(0,0,0);
     }
-    
-    
-    
 
     public double getThrust() {
         return thrust;

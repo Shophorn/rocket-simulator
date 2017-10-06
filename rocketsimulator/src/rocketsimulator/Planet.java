@@ -8,7 +8,7 @@ package rocketsimulator;
 public class Planet {
     public final String name;
     public final double atmosphereHeight;
-    
+
     private final double mass;
     private final double surfaceHeight; 
     

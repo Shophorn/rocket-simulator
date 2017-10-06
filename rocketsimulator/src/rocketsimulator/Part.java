@@ -1,11 +1,5 @@
 package rocketsimulator;
 
-public class Part {
-    private double weight;
-
-    public double getWeight() {
-        return 0;
-    }
-    
-    
+public abstract class Part {
+    abstract public double getWeight();    
 }

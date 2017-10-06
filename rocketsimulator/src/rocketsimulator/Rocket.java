@@ -14,7 +14,8 @@ public class Rocket {
     private Engine engine;
     private Hull hull;
     private FuelTank fuelTank;
-
+    private Part [] parts;
+    
     // MOVEMENT
     private double altitude = 0;
     private double speed = 0;
@@ -22,34 +23,29 @@ public class Rocket {
     private RocketEndStatus endStatus;
     public RocketEndStatus getEndStatus () { return endStatus; }
     
-    public Rocket() {
-        engine = new Engine ();
-        hull = new Hull ();
-        fuelTank = new FuelTank ();
+    public Rocket(Engine engine, Hull hull, FuelTank fuelTank) {
+        this.engine = engine;
+        this.hull = hull;
+        this.fuelTank = fuelTank;
+        
+        parts = new Part [] {engine, hull, fuelTank };
     }
     
     public double getAltitude() {
         return altitude;
     }
-    
-    public void setFuelAmmount(double value) {
-        this.fuelAmount = value;
-    }
 
-
-    public void setEngine(Engine engine) {
-        this.engine = engine;
-    }
-    
-    
-    
-    
     public void setEngineConsumption(double consumption) {
         this.engine.setConsumption(consumption);
     }
     
     private double getCombinedWeight() {
-        return engine.getWeight() + hull.getWeight() + fuelTank.getWeight();
+        double weight = 0.0;
+        for (Part part : parts)
+        {
+            weight += part.getWeight();
+        }
+        return weight;
     }
     
     public void chooseEngine(double i) {
@@ -63,6 +59,12 @@ public class Rocket {
         return hull.getWeight() < getCombinedWeight() /20;
     }
     
+    private double getFuelAmount()
+    {
+        return fuelTank.getFuelAmmount();
+    }
+    
+    double gravityEscapeLimit = 0.1;
     public boolean go(Planet planet)
     {
         double weight = getCombinedWeight ();
@@ -74,8 +76,19 @@ public class Rocket {
         speed += acceleration;
         
         boolean goingUp = speed > 0.0;
-        if (goingUp) {
+        boolean outOfOrbit = gravity <= gravityEscapeLimit;
+        if (goingUp && !outOfOrbit) {
             altitude += speed;
+        } else {
+            if (outOfOrbit){
+                endStatus = RocketEndStatus.ESCAPED_ORBIT;
+            }else if (altitude < 1) {
+                endStatus = RocketEndStatus.FAILED_TO_TAKEOFF;
+            } else if (getFuelAmount() <= 0) {
+                endStatus = RocketEndStatus.OUT_OF_FUEL;
+            } else {
+                endStatus = RocketEndStatus.GENERIC_MISHAP;
+            }
         }
         return goingUp;
     } 
