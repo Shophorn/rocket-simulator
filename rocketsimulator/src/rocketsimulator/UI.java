@@ -64,7 +64,6 @@ public class UI extends BorderPane
 
         // INPUT
         addSliderRow ("Fuel amount" , Values.minRocketFuel, Values.maxRocketFuel, RocketStat.FUEL_AMOUNT);
-        addSliderRow ("Fuel consumption", Values.minRocketFuelConsumption, Values.maxRocketFuelConsumption, RocketStat.FUEL_CONSUMPTION);
         addSliderRow ("Engine type", Values.minRocketEngineType, Values.maxRocketEngineType, RocketStat.ENGINE_TYPE);
         
           
