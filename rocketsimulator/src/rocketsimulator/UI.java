@@ -44,7 +44,7 @@ public class UI extends BorderPane
     
     private static final int TITLE_ROW = 0;
     private static final int IO_ROW = 1;
-    private static final int BUTTON_ROW = 2;
+    private static final int BUTTON_ROW = 3;
     private static final int TOTAL_ROWS = 3;
     
     public UI (Simulator simulator)
@@ -65,6 +65,7 @@ public class UI extends BorderPane
         // INPUT
         addSliderRow ("Fuel amount" , Values.minRocketFuel, Values.maxRocketFuel, RocketStat.FUEL_AMOUNT);
         addSliderRow ("Fuel consumption", Values.minRocketFuelConsumption, Values.maxRocketFuelConsumption, RocketStat.FUEL_CONSUMPTION);
+        addSliderRow ("Engine type", Values.minRocketEngineType, Values.maxRocketEngineType, RocketStat.ENGINE_TYPE);
         
           
         // OUTPUT

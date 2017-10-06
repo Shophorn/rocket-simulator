@@ -49,10 +49,10 @@ public class Engine {
     //jotka paranee lineaarisesti tai mitä sliderille keksiikään tehdä. Voi toteuttaa
     //vaikka switchinäkin mutta tällä toteutuksella ei tavallaan väliä sillä millaiset
     //rajat laittaa.
-    public void chooseMotor(int number) {
-        this.weight = 100+15*number;
-        this.thrust = 2000+500*number;
-        this.consumption = 0.0001+0.000025*number;
+    public void chooseMotor(double number) {
+        this.weight = 10+1.5*number;
+        this.thrust = 2000+400*number;
+        this.consumption = 0.002+0.0004*number;
     }
     
     

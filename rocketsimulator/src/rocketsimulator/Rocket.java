@@ -83,11 +83,11 @@ public class Rocket {
     }
     
     
-    public double currentWeight() {
+    public double getMass() {
         return this.engine.getWeight()+this.hull.getWeight()+this.getFuelAmount();
     }
     
-    public void chooseEngine(int i) {
+    public void chooseEngine(double i) {
         this.engine.chooseMotor(i);
     }
     
@@ -95,7 +95,7 @@ public class Rocket {
     //muuta kuin itse kiinteää rakettia niin edel oleval taval vois tarkistaa räjähtääkö
     //se raketti sen takia ettei rungko oo tarpeeks tukeva
     public boolean hullFailure() {
-        if (this.hull.getWeight() < this.currentWeight()/20) {
+        if (this.hull.getWeight() < this.getMass()/20) {
             return true;
         } else {
             return false;
@@ -109,8 +109,8 @@ public class Rocket {
         while(fuel > 0) {
             fuel = this.engine.go(fuel);
             this.height += this.speed;
-            if (this.height>planet.getAtmosphereLimit()) {
-                info = "Rocket has succesfully escaped the atmosphere of earth!\n";
+            if (this.height>planet.atmosphere) {
+                info = "Rocket has succesfully escaped the atmosphere of "+planet.name+"!";
                 break;
             }
             info = "Rocket is out of fuel\nRocket was "+this.height/1000+"km high when running out of fuel\n";
