@@ -13,6 +13,12 @@ public class Simulator {
     
     private Rocket rocket = new Rocket();
     
+    private Planet planet = Planet.EARTH;
+    
+    public void setPlanet (Planet value)
+    {
+        planet = value;
+    }
     public void setFuelAmmount(double fuel){
         rocket.setFuelAmmount(fuel);
     }
@@ -21,19 +27,23 @@ public class Simulator {
         rocket.setEngineConsumption(consumption);
     }
     
-    public void simu(){
-        setFuelAmmount(3);
-        setFuelConsumption(1);
-        double altitude;
-        double atmosphere = 60000;
-        
-        
-        rocket.go(Planet.EARTH);
-        System.out.println(rocket.getHeight());
-    }
+//    public void simu(){
+//        setFuelAmmount(3);
+//        setFuelConsumption(1);
+//        double altitude;
+//        double atmosphere = 60000;
+//        
+//        
+//        rocket.go(Planet.EARTH);
+//        System.out.println(rocket.getHeight());
+//    }
     
     public String launch() {
-        Planet planet = Planet.EARTH;
+        //SAMPO TEE TÄNNE SE LOOP
+        
+        
+        
+        // KATELLAA TOTA PALAUTUSTA KOHTA
         String wallOfText;
         wallOfText = "Liftoff!\n";
         if (rocket.getFuelAmount()==0){
