@@ -52,6 +52,9 @@ public class Simulator {
             case FUEL_CONSUMPTION:
                 rocket.setEngineConsumption(value);
                 break;
+            case ENGINE_TYPE:
+                rocket.chooseEngine(value);
+                break;
         }
     }
     

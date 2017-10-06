@@ -87,7 +87,7 @@ public class Rocket {
         return this.engine.getWeight()+this.hull.getWeight()+this.getFuelAmount();
     }
     
-    public void chooseEngine(int i) {
+    public void chooseEngine(double i) {
         this.engine.chooseMotor(i);
     }
     
@@ -109,8 +109,8 @@ public class Rocket {
         while(fuel > 0) {
             fuel = this.engine.go(fuel);
             this.height += this.speed;
-            if (this.height>planet.getAtmosphereLimit()) {
-                info = "Rocket has succesfully escaped the atmosphere of earth!\n";
+            if (this.height>planet.atmosphere) {
+                info = "Rocket has succesfully escaped the atmosphere of "+planet.name+"!";
                 break;
             }
             info = "Rocket is out of fuel\nRocket was "+this.height/1000+"km high when running out of fuel\n";

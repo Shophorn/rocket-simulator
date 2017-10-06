@@ -10,5 +10,5 @@ package rocketsimulator;
  * @author Samu
  */
 public enum RocketStat {
-    FUEL_CONSUMPTION, FUEL_AMOUNT
+    FUEL_CONSUMPTION, FUEL_AMOUNT, ENGINE_TYPE
 }
