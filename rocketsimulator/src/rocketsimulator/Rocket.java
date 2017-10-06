@@ -87,6 +87,10 @@ public class Rocket {
         return this.engine.getWeight()+this.hull.getWeight()+this.getFuelAmount();
     }
     
+    public void chooseEngine(int i) {
+        this.engine.chooseMotor(i);
+    }
+    
     //tarkistaa "rungon kestävyyden", nopee netistä luin et 90%bensaa ja oliko noin4% painosta
     //muuta kuin itse kiinteää rakettia niin edel oleval taval vois tarkistaa räjähtääkö
     //se raketti sen takia ettei rungko oo tarpeeks tukeva
