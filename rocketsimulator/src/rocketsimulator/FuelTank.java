@@ -9,7 +9,7 @@ package rocketsimulator;
  *
  * @author Samu
  */
-public class FuelTank {
+public class FuelTank extends Part{
     private double fuelAmmount;
     private double maxAmmount;
     private double weight;
@@ -34,8 +34,13 @@ public class FuelTank {
         return maxAmmount;
     }
 
-    public double getWeight() {
+    public double getTankWeight() {
         return weight;
+    }
+    
+    @Override
+    public double getWeight() {
+        return this.weight+this.fuelAmmount;
     }
     
     

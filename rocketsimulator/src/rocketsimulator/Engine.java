@@ -9,7 +9,7 @@ package rocketsimulator;
  *
  * @author Samu
  */
-public class Engine {
+public class Engine extends Part {
     private double thrust;
     private double consumption;
     private double weight;
@@ -36,6 +36,7 @@ public class Engine {
         return consumption;
     }
     
+    @Override
     public double getWeight() {
         return weight;
     }
