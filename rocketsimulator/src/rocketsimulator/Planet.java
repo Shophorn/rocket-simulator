@@ -3,37 +3,23 @@ package rocketsimulator;
 
 
 public class Planet {
-    private double atmosphereLimit;
-    private String name;
+    public final String name;
+    public final double atmosphere;
+    public final double gravity;
 
-    public Planet() {
-        this.atmosphereLimit = 10000000;
-        this.name = "Earth";
-    }
-
-    public Planet(double atmosphereLimit, String name) {
-        this.atmosphereLimit = atmosphereLimit;
+    public static final Planet EARTH = new Planet ("Earth", 10_000_000, 9.81);
+    
+    private Planet (String name, double atmosphere, double gravity)
+    {
         this.name = name;
+        this.atmosphere = atmosphere;
+        this.gravity = gravity;
     }
 
-    public void setAtmosphereLimit(double atmosphereLimit) {
-        this.atmosphereLimit = atmosphereLimit;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getAtmosphereLimit() {
-        return atmosphereLimit;
-    }
-
-    public String getName() {
+    @Override
+    public String toString ()
+    {
         return name;
     }
-    
-    
-    
-    
-    
+
 }
