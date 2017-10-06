@@ -11,7 +11,12 @@ package rocketsimulator;
  */
 public class Simulator {
     
-    private Rocket rocket = new Rocket();
+   // private Rocket rocket = new Rocket();
+    private Engine engine = new Engine();
+    private Hull hull = new Hull();
+    private FuelTank fuelTank = new FuelTank();
+    
+    private Rocket rocket = new Rocket(engine, hull, fuelTank);
     
     private Planet planet = Planet.EARTH;
     
@@ -38,7 +43,8 @@ public class Simulator {
 //        System.out.println(rocket.getHeight());
 //    }
     int time = 0;
-    public boolean launch() {
+    String launchResult;
+    public String launch() {
         //SAMPO TEE TÄNNE SE LOOP
         
         
@@ -52,14 +58,8 @@ public class Simulator {
         time++;
         
         }
-        String wallOfText;
-        wallOfText = "Liftoff!\n";
-        if (rocket.getFuelAmount()==0){
-            wallOfText += "...or not\nYou tried to launch your rocket, but it had no fuel!\n";
-        }
-        wallOfText += rocket.go(planet);
         
-        String launchResult;
+        
         switch(rocket.getEndStatus()){
             case OUT_OF_FUEL:
                 launchResult = "Rocket ran out of fuel";
@@ -76,7 +76,7 @@ public class Simulator {
         }
         //kommentti
         
-        return "Altitude: %f\nTime: %f\n",rocket.getAltitude(), time;
+        return launchResult;
         
     }
     
