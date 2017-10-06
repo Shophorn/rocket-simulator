@@ -28,12 +28,12 @@ public class Simulator {
         double atmosphere = 60000;
         
         
-        rocket.go(new Planet());
+        rocket.go(Planet.EARTH);
         System.out.println(rocket.getHeight());
     }
     
     public String launch() {
-        Planet planet = new Planet();
+        Planet planet = Planet.EARTH;
         String wallOfText;
         wallOfText = "Liftoff!\n";
         if (rocket.getFuelAmount()==0){
