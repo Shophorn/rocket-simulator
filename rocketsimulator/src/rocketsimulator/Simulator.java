@@ -58,10 +58,13 @@ public class Simulator {
             case ESCAPED_ORBIT:
                 launchResult = "Rocket has reached the orbit! Congratulation! ";
                 break;
+            case GENERIC_MISHAP:
+                
+                launchResult = "An unexpected error occured";
             default:
                 
         }
-        //kommentti
+        launchResult += String.format("\nRocket reached the altitude of: %f\nTime elapsed: %f",rocket.getAltitude(),time);
         
         return launchResult;
         
