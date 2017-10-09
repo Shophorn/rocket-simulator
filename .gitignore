@@ -6,3 +6,4 @@ dist/
 nbdist/
 .nb-gradle/
 /rocketsimulator/nbproject/private/
+rocketsimulator/flightLog.txt

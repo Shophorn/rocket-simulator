@@ -11,12 +11,13 @@ package rocketsimulator;
  */
 public class Values
 {
-    public static final double minEnginePower = 0.0;
-    public static final double maxEnginePower = 200.0;
+    public static final double MIN_ENGINE_POWER = 1.0;
+    public static final double MAX_ENGINE_POWER = 1000.0;
     
-    public static final double minFuelTankVolume = 0.0;
-    public static final double maxFuelTankVolume = 1000.0;
-    
+    public static final double MIN_FUEL_TANK_VOLUME = 0.0;
+    public static final double MAX_FUEL_TANK_VOLUME = 10_000.0;
+    /*
     public static final double minRocketEngineType = 0.0;
     public static final double maxRocketEngineType = 10.0;
+*/
 }

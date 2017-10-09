@@ -10,5 +10,8 @@ package rocketsimulator;
  * @author Samu
  */
 public enum RocketStat {
-    ENGINE_POWER, FUELTANK_CAPACITY, HULL_WEIGHT
+    ENGINE_POWER,
+    FUELTANK_CAPACITY,
+    HULL_WEIGHT,
+   
 }

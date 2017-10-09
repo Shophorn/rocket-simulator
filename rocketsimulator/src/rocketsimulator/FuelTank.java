@@ -12,7 +12,7 @@ package rocketsimulator;
 public class FuelTank extends Part{
     private double amount;
     private double capacity;
-    private double fuelDensity = 0.8; // density of Kerosene, can be made configurable
+    private double fuelDensity = 0.8; // kg / dm3, density of Kerosene, can be made configurable
     private double ownWeight;
     
     public FuelTank(double capacity) {

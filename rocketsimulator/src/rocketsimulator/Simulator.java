@@ -14,9 +14,8 @@ public class Simulator {
 
     
     private double fuelTankCapacity = 0.0;
-    private double enginePower = 0.0;
+    private double engineThrust = 0.0;
     
-//    private Rocket rocket = new Rocket(engine, hull, fuelTank);
     
     private Planet planet = Planet.EARTH;
     
@@ -33,7 +32,7 @@ public class Simulator {
 
     public String launch() {
 
-        Engine engine = new Engine(enginePower);
+        Engine engine = new Engine(engineThrust);
         Hull hull = new Hull();
         FuelTank fuelTank = new FuelTank(fuelTankCapacity);
         
@@ -67,10 +66,28 @@ public class Simulator {
             default:
                 
         }
-        launchResult += String.format("\nRocket reached the altitude of: %f\nTime elapsed: %d",rocket.getAltitude(),time);
+        launchResult += String.format(
+                "\nRocket reached the altitude of: %.2f km\nTime elapsed: %d s",
+                rocket.getAltitude() / 1_000, // convert to km
+                time
+        );
+        
+        if (openLog) {
+            Program.saveTextFile(rocket.getFlightLog());
+        }
         
         return launchResult;
         
+    }
+    
+    private boolean openLog = false;
+    public void toggleOpenLog()
+    {
+        openLog = !openLog;
+    }
+    public boolean getOpenLog()
+    {
+        return openLog;
     }
     
     public void setRocketStat(RocketStat type, double value) {
@@ -79,7 +96,7 @@ public class Simulator {
                 fuelTankCapacity = value;
                 break;
             case ENGINE_POWER:
-                enginePower = value;
+                engineThrust = value;
                 break;
         }
     }

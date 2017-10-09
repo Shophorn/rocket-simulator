@@ -63,24 +63,45 @@ public class UI extends BorderPane
         messageLabel = new Label ();
 
         // INPUT
-        addSliderRow ("Engine Power" , Values.minEnginePower, Values.maxEnginePower, RocketStat.ENGINE_POWER);
-        addSliderRow ("Fuel Tank Capacity", Values.minFuelTankVolume, Values.maxFuelTankVolume, RocketStat.FUELTANK_CAPACITY);
-          
+        addSliderRow ("Engine Power" , Values.MIN_ENGINE_POWER, Values.MAX_ENGINE_POWER, RocketStat.ENGINE_POWER);
+        addSliderRow ("Fuel Tank Capacity", Values.MIN_FUEL_TANK_VOLUME, Values.MAX_FUEL_TANK_VOLUME, RocketStat.FUELTANK_CAPACITY);
+        
+        {
+            int row = nextInputRow ();
+            
+            Label openLogLabel = new Label ("Open Log File");
+            openLogLabel.setPadding(labelInsets);
+
+            ToggleButton openLogToggle = new ToggleButton (Boolean.toString(simulator.getOpenLog()));
+            openLogToggle.setMinWidth(45); // wide enough for "false", so that it won't change size
+            openLogToggle.setOnAction((event)-> {
+                simulator.toggleOpenLog();
+                openLogToggle.setText(Boolean.toString(simulator.getOpenLog()));
+                }
+            );
+            
+            inputGrid.addRow(row, openLogLabel, openLogToggle);
+        }
+        
         // OUTPUT
         clearOutput ();
         
         // BUTTONS
+        Insets buttonsPadding = new Insets (15, 0, 0, 0);
+        
         Button launchButton = new Button ("LAUNCH");
         launchButton.setOnAction ((event)-> printOutput ());
         launchButton.setMinWidth (buttonWidth);
         ioGrid.add(launchButton, 0, BUTTON_ROW);
         GridPane.setHalignment (launchButton, HPos.CENTER);
+        GridPane.setMargin (launchButton, buttonsPadding);
 
         Button clearButton =  new Button ("CLEAR");
         clearButton.setOnAction ((event)-> clearOutput ());
         clearButton.setMinWidth (buttonWidth);
         ioGrid.add(clearButton, 2, BUTTON_ROW);
         GridPane.setHalignment (clearButton, HPos.CENTER);
+        GridPane.setMargin (clearButton, buttonsPadding);
         
         // TITLES
         Label inputTitleLabel = new Label (INPUT_TITLE);
@@ -106,19 +127,20 @@ public class UI extends BorderPane
         ioGrid.addRow (TITLE_ROW, inputTitleLabel, ioSeparator, outputTitleLabel);
         ioGrid.add (inputGrid, 0, IO_ROW);
         ioGrid.add (outputLabel, 2, IO_ROW);
-        GridPane.setRowSpan(ioSeparator, TOTAL_ROWS);
+        GridPane.setRowSpan(ioSeparator, TOTAL_ROWS+1);
         GridPane.setHalignment (outputLabel, HPos.CENTER);
         GridPane.setValignment (outputLabel, VPos.CENTER);
         
-        ColumnConstraints cConstraint = new ColumnConstraints (300);
+        ColumnConstraints cConstraint = new ColumnConstraints (350);
         ioGrid.getColumnConstraints().add (0, cConstraint);
         ioGrid.getColumnConstraints().add (1, new ColumnConstraints());
         ioGrid.getColumnConstraints().add (2, cConstraint);
         
+        /*
         RowConstraints rConstraint = new RowConstraints (300);
         rConstraint.setVgrow(Priority.ALWAYS);
         ioGrid.getRowConstraints ().addAll(new RowConstraints (), rConstraint);
-        
+        */
         ioGrid.setPadding (labelInsets);
     }
     

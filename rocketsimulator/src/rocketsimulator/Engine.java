@@ -9,65 +9,65 @@ package rocketsimulator;
  *
  * @author Samu
  */
-public class Engine extends Part {
-    private double thrust;
-    private double consumption;
+public class Engine extends Part 
+{
+    // one more time from scratch
+    // thrust on se mitä säädetään
+    // jos tätä haluu säätää, ni se olis sit tyliin engineQuality, tms.
+    // https://en.wikipedia.org/wiki/Thrust_specific_fuel_consumption#Typical_values_of_SFC_for_thrust_engines
+    private final double tsfc = 0.250; // kg /(kN*s), eli kuinka monta kilogrammaa löpöä menee kun tuotetaan sekunniksi kN työntöä, riippuu moottorin muotoilusta
+    private double thrust; 
     private double weight;
-    //kaikki arvot tonneissa, thrust tuhatta newtonia
-    /*
-    public Engine(double thrust, double consumption, double weight) {
+    
+
+   
+    public Engine (double thrust)
+    {
         this.thrust = thrust;
-        this.consumption = consumption;
-        this.weight = weight;
     }
 
-    public Engine() {
-        this(0,0,0);
-    }
-    */
-    public Engine (double power)
+    public double getThrust()
     {
-        // JOTAI TÄLLASTA EHKÄ
-        thrust = power;
-        consumption = power * 0.2;
-        weight = power * 0.2;
+        // convert kN to N
+        return thrust * 1_000;
     }
     
-    public double getThrust() {
-        // DO CALCULATIONS HERE https://www.grc.nasa.gov/www/k-12/airplane/rockth.html
-        // Thurst = mass*acceleration;??
-        return thrust;
-    }
-
-    public double getConsumption() {
-        return consumption;
+    public double getConsumption()
+    {
+        return thrust * tsfc;
     }
     
     @Override
     public double getWeight() {
         return weight;
     }
-
+    /**
+     * set in Constructor
+     * @param thrust
+     * @deprecated
+     */
+    @Deprecated
     public void setThrust(double thrust) {
         this.thrust = thrust;
     }
-    
     
     //runkoa valintapohjaiselle moottorille, esim liukuri jossa 10 eri moottoria
     //jotka paranee lineaarisesti tai mitä sliderille keksiikään tehdä. Voi toteuttaa
     //vaikka switchinäkin mutta tällä toteutuksella ei tavallaan väliä sillä millaiset
     //rajat laittaa.
+    @Deprecated
     public void chooseMotor(double number) {
         this.weight = 10+1.5*number;
         this.thrust = 2000+400*number;
-        this.consumption = 0.002+0.0004*number;
+
     }
     
-    
+    @Deprecated
     public void setConsumption(double consumption) {
-        this.consumption = consumption;
+       
     }
     
+    @Deprecated
     public void setWeight(double weight) {
         this.weight = weight;
     }

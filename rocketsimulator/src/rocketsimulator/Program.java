@@ -5,6 +5,9 @@
  */
 package rocketsimulator;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -43,4 +46,23 @@ public class Program extends Application {
         ui.printMessage (message);
     }
     
+    public static void saveTextFile (String text)
+    {   
+        boolean fileSaved = false;
+        try {
+            PrintWriter out = new PrintWriter("flightLog.txt");
+            out.write (text);
+            out.close();
+            fileSaved = true;
+        } catch (FileNotFoundException e){
+        } 
+        if (fileSaved) {
+            try {
+                ProcessBuilder pb = new ProcessBuilder("Notepad.exe", "flightLog.txt");
+                pb.start();
+            } catch (IOException e) {
+                
+            }
+        }
+    }
 }
