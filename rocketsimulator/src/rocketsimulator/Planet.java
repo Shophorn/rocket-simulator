@@ -25,7 +25,7 @@ public class Planet {
         this.radius = radius;
     }
     
-    public double getGravity (double altitude, double objectMass)
+    public double getDrag (double altitude, double objectMass)
     {
         altitude += radius;
         return GRAV_CONSTANT * (this.mass * objectMass) / (altitude * altitude);

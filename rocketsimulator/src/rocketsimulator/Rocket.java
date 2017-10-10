@@ -15,7 +15,6 @@ public class Rocket {
     private Hull hull;
     private FuelTank fuelTank;
     private Part [] parts;
-    private double weight;
     
     // MOVEMENT
     private double altitude = 0;
@@ -30,20 +29,20 @@ public class Rocket {
         this.fuelTank = fuelTank;
         
         parts = new Part [] {engine, hull, fuelTank };
-        
-        calculateCombinedWeight();
+   
     }
     
     public double getAltitude() {
         return altitude;
     }
 
-    private void calculateCombinedWeight() {
-        weight = 0.0;
+    private double getCombinedWeight() {
+        double weight = 0.0;
         for (Part part : parts)
         {
             weight += part.getWeight();
         }
+        return weight;
     }
   
     
@@ -77,8 +76,12 @@ public class Rocket {
             outOfFuel = true;
         }
         
+        double weight = getCombinedWeight();
+        System.out.println(weight);
         double thrust = engine.getThrust() * fuelUsePercent;
-        double drag = planet.getGravity(altitude, weight);
+        
+        double drag = planet.getDrag(altitude, weight);
+        
         double acceleration = (thrust - drag) / weight;
         speed += acceleration;
         
@@ -89,7 +92,15 @@ public class Rocket {
         boolean done = escaped || !goingUp;
         
         // LOG STUFF
-        flightLog += String.format("t:%-5d thrust:%-10.2f drag:%-10.2f accel:%-10.2f speed:%-10.2f fuel:%-10.2f\r\n", time, thrust, drag, acceleration, speed, fuelTank.getAmount());
+        flightLog += String.format("t:%-5d thrust:%-10.2f drag:%-10.2f accel:%-10.2f speed:%-10.2f fuel:%-10.2f altitude:%-10.2f\r\n",
+                time,
+                thrust,
+                drag,
+                acceleration,
+                speed,
+                fuelTank.getAmount(),
+                altitude
+        );
         time++;
         
         if (!done) {
@@ -106,35 +117,5 @@ public class Rocket {
             }
         }
         return !done;
-        
-        /*
-        double weight = getCombinedWeight ();
-        double fuelUsage = fuelTank.useFuel(engine.getConsumption());
-        double thrust = engine.getThrust() * fuelUsage;
-        double gravity = planet.getGravity(altitude, weight);
-        double acceleration = (thrust - gravity) / weight; 
-        
-        Program.sendMessage(String.valueOf(weight));
-
-        speed += acceleration;
-         
-        boolean goingUp = speed > 0.0;
-        boolean outOfOrbit = false;
-
-        if (goingUp && !outOfOrbit) {
-            altitude += speed;
-        } else {
-            if (outOfOrbit){
-                endStatus = RocketEndStatus.ESCAPED_ORBIT;
-            }else if (altitude < 1) {
-                endStatus = RocketEndStatus.FAILED_TO_TAKEOFF;
-            } else if (getFuelAmount() <= 0) {
-                endStatus = RocketEndStatus.OUT_OF_FUEL;
-            } else {
-                endStatus = RocketEndStatus.GENERIC_MISHAP;
-            }
-        }
-        return goingUp;
-*/
     } 
 }

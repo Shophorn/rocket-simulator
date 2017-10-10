@@ -63,8 +63,8 @@ public class UI extends BorderPane
         messageLabel = new Label ();
 
         // INPUT
-        addSliderRow ("Engine Power" , Values.MIN_ENGINE_POWER, Values.MAX_ENGINE_POWER, RocketStat.ENGINE_POWER);
-        addSliderRow ("Fuel Tank Capacity", Values.MIN_FUEL_TANK_VOLUME, Values.MAX_FUEL_TANK_VOLUME, RocketStat.FUELTANK_CAPACITY);
+        addSliderRow ("Engine Thrust" , "kN", Values.MIN_ENGINE_POWER, Values.MAX_ENGINE_POWER, RocketStat.ENGINE_POWER);
+        addSliderRow ("Fuel Tank Capacity","dm3", Values.MIN_FUEL_TANK_VOLUME, Values.MAX_FUEL_TANK_VOLUME, RocketStat.FUELTANK_CAPACITY);
         
         {
             int row = nextInputRow ();
@@ -161,10 +161,13 @@ public class UI extends BorderPane
        outputLabel.setText(DEFAULT_OUTPUT);
     }
     
-    private void addSliderRow (String labelText, double minValue, double maxValue, RocketStat type)
+    private void addSliderRow (String labelText, String unitText, double minValue, double maxValue, RocketStat type)
     {
         Label label = new Label (labelText);
         label.setPadding(labelInsets);
+        
+        Label unitLabel = new Label (unitText);
+        unitLabel.setPadding(labelInsets);
         
         Slider slider = new Slider (minValue, maxValue, minValue);
         TextField field = new TextField (Double.toString(minValue));
@@ -195,6 +198,6 @@ public class UI extends BorderPane
         
         field.setMaxWidth(fieldWidth);
         
-        inputGrid.addRow (nextInputRow(), label, slider, field);
+        inputGrid.addRow (nextInputRow(), label, slider, field, unitLabel);
     }
 }
