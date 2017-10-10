@@ -64,11 +64,19 @@ public class Rocket {
     private String flightLog = "";
     public String getFlightLog () { return flightLog; }
     private int time = 0;
+    private boolean outOfFuel = false;
+    private int outOfFuelTime;
+    public int getOutOfFuelTime () { return outOfFuelTime; }
     public boolean go(Planet planet)
     {
         // Check if fuel left
         // Check if velocity higher than escapeVelocity
         double fuelUsePercent = fuelTank.useFuel(engine.getConsumption());
+        if (fuelUsePercent == 0 && !outOfFuel) {
+            outOfFuelTime = time;
+            outOfFuel = true;
+        }
+        
         double thrust = engine.getThrust() * fuelUsePercent;
         double drag = planet.getGravity(altitude, weight);
         double acceleration = (thrust - drag) / weight;

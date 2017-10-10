@@ -51,7 +51,7 @@ public class Simulator {
         
         switch(rocket.getEndStatus()){
             case OUT_OF_FUEL:
-                launchResult = "Rocket ran out of fuel";
+                launchResult = String.format ("Rocket ran out of fuel at: %d s", rocket.getOutOfFuelTime());
                 break;
             case FAILED_TO_TAKEOFF:
                 // Pitäiskö tollanen due to juttu?
