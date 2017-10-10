@@ -12,7 +12,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
 /**
  * @author Leo Tamminen
  */
@@ -34,9 +33,6 @@ public class Program extends Application {
         sendMessage ("SpaceY Rocket Launcher");
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }

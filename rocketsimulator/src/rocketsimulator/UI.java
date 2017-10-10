@@ -88,9 +88,9 @@ public class UI extends BorderPane
             int row = nextInputRow();
             Label openLogLabe2 = new Label ("Planet: ");
             openLogLabe2.setPadding(labelInsets);
-           // final ComboBox comboBox = new ComboBox(Planet.planetNames);
+           // final ComboBox comboBox = new ComboBox(Planet.PLANET_NAMES);
             ComboBox<String> comboBox = new ComboBox();
-            comboBox.getItems().addAll(Planet.planetNames);
+            comboBox.getItems().addAll(Planet.PLANET_NAMES);
         
             // SAMPO LAITA TÄSSÄ KOHTAA OLETUSARVOKSI SEN LISTAN EKA
         
