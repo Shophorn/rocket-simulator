@@ -86,14 +86,20 @@ public class UI extends BorderPane
         {
             // SAMPOOOOO
             int row = nextInputRow();
-            
+            Label openLogLabe2 = new Label ("Planet: ");
+            openLogLabe2.setPadding(labelInsets);
+           // final ComboBox comboBox = new ComboBox(Planet.planetNames);
+            ComboBox<String> comboBox = new ComboBox();
+            comboBox.getItems().addAll(Planet.planetNames);
+            inputGrid.addRow(row, openLogLabe2, comboBox);
             // Label
-            // TEE ComboBox<String>
-            // comboBox.valueProperty().addListener (
-            //      (observableValue, oldValue, newValue)-> { kaikki metodit }
-            // );
+           // Button button = new Button ();
+          //  button.setOnAction(e -> planetName());
+            comboBox.valueProperty().addListener (
+                 (observableValue, oldValue, newValue)-> { simulator.setPlanet(newValue); }
+             );
             
-            // inputGrid.addRow(row, comboBox
+          
         }
         
         // OUTPUT

@@ -21,7 +21,16 @@ public class Simulator {
     
     public void setPlanet (String planetName)
     {
-        // switch
+        switch(planetName){
+            case "Earth":
+                planet = Planet.EARTH;
+            case "Moon":
+                planet = Planet.MOON;
+            case "Mars":
+                planet = Planet.MARS;
+            default:
+                System.out.println("Hmm");
+        }
     }
 
     
