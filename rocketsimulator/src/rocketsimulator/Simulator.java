@@ -24,13 +24,17 @@ public class Simulator {
         switch(planetName){
             case "Earth":
                 planet = Planet.EARTH;
+                break;
             case "Moon":
                 planet = Planet.MOON;
+                break;
             case "Mars":
                 planet = Planet.MARS;
+                break;
             default:
                 System.out.println("Hmm");
         }
+        System.out.println(planetName);
     }
 
     

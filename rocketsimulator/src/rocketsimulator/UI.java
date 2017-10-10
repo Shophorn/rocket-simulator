@@ -91,6 +91,9 @@ public class UI extends BorderPane
            // final ComboBox comboBox = new ComboBox(Planet.planetNames);
             ComboBox<String> comboBox = new ComboBox();
             comboBox.getItems().addAll(Planet.planetNames);
+        
+            // SAMPO LAITA TÄSSÄ KOHTAA OLETUSARVOKSI SEN LISTAN EKA
+        
             inputGrid.addRow(row, openLogLabe2, comboBox);
             // Label
            // Button button = new Button ();
@@ -99,7 +102,7 @@ public class UI extends BorderPane
                  (observableValue, oldValue, newValue)-> { simulator.setPlanet(newValue); }
              );
             
-          
+          // JA SIT VIEL SIISTI TÄÄ ALUE JA TOLLE LABELILLE KUNNON NIMI, esim planetLabel tms.
         }
         
         // OUTPUT

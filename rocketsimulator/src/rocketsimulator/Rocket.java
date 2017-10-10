@@ -81,7 +81,8 @@ public class Rocket {
         
         double drag = planet.getDrag(altitude, weight);
         
-        System.out.println(drag/weight);
+        // THIS WAS USED TO PRINT GRAVITATIONAL ACCELERATION
+        // System.out.println(drag/weight);
         
         double acceleration = (thrust - drag) / weight;
         speed += acceleration;
