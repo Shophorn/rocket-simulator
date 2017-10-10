@@ -19,7 +19,7 @@ public class Hull extends Part{
     }
 
     public Hull() {
-        this(0,0);
+        this(50_000,0);
     } 
     
     @Override

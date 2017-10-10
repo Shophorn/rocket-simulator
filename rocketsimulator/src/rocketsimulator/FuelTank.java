@@ -11,9 +11,9 @@ package rocketsimulator;
  */
 public class FuelTank extends Part{
     private double amount;
-    private double capacity;
-    private double fuelDensity = 0.8; // kg / dm3, density of Kerosene, can be made configurable
-    private double ownWeight;
+    private final double capacity;
+    private final double fuelDensity = 0.8; // kg / dm3, density of Kerosene, can be made configurable
+    private final double ownWeight;
     
     public FuelTank(double capacity) {
         this.amount = capacity;
@@ -26,7 +26,8 @@ public class FuelTank extends Part{
     public double getAmount() {
         return amount;
     }
-
+    
+    @Deprecated
     public double getCapacity() {
         return capacity;
     }
@@ -37,12 +38,7 @@ public class FuelTank extends Part{
     }
     
     
-    // MIKÄ TÄMÄN AJATUS ON??
-    public void setFuelTankType(double i) {
-        this.amount = 50+i*50;
-        this.capacity = this.amount;
-        this.ownWeight = i;
-    } 
+    
     
     
     public double useFuel(double usage) {
