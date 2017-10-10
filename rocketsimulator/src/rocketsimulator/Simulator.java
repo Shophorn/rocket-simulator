@@ -17,11 +17,11 @@ public class Simulator {
     private double engineThrust = 0.0;
     
     
-    private Planet planet = Planet.EARTH;
+    private Planet planet = Planet.MOON;
     
-    public void setPlanet (Planet value)
+    public void setPlanet (String planetName)
     {
-        planet = value;
+        // switch
     }
 
     

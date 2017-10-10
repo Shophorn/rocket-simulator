@@ -15,8 +15,8 @@ public class Engine extends Part
     // thrust on se mitä säädetään
     // jos tätä haluu säätää, ni se olis sit tyliin engineQuality, tms.
     // https://en.wikipedia.org/wiki/Thrust_specific_fuel_consumption#Typical_values_of_SFC_for_thrust_engines
-    private final double tsfc = 0.250; // kg /(kN*s), eli kuinka monta kilogrammaa löpöä menee kun tuotetaan sekunniksi kN työntöä, riippuu moottorin muotoilusta
-    private double thrust; 
+    private final double tsfc = 0.01; // 0.250; // kg /(kN*s), eli kuinka monta kilogrammaa löpöä menee kun tuotetaan sekunniksi kN työntöä, riippuu moottorin muotoilusta
+    private final double thrust; 
     private double weight;
 
     public Engine (double thrust)

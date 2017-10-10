@@ -77,10 +77,11 @@ public class Rocket {
         }
         
         double weight = getCombinedWeight();
-        System.out.println(weight);
         double thrust = engine.getThrust() * fuelUsePercent;
         
         double drag = planet.getDrag(altitude, weight);
+        
+        System.out.println(drag/weight);
         
         double acceleration = (thrust - drag) / weight;
         speed += acceleration;

@@ -83,6 +83,19 @@ public class UI extends BorderPane
             inputGrid.addRow(row, openLogLabel, openLogToggle);
         }
         
+        {
+            // SAMPOOOOO
+            int row = nextInputRow();
+            
+            // Label
+            // TEE ComboBox<String>
+            // comboBox.valueProperty().addListener (
+            //      (observableValue, oldValue, newValue)-> { kaikki metodit }
+            // );
+            
+            // inputGrid.addRow(row, comboBox
+        }
+        
         // OUTPUT
         clearOutput ();
         
