@@ -86,18 +86,14 @@ public class UI extends BorderPane
         {
             // SAMPOOOOO
             int row = nextInputRow();
-            Label openLogLabe2 = new Label ("Planet: ");
-            openLogLabe2.setPadding(labelInsets);
-           // final ComboBox comboBox = new ComboBox(Planet.PLANET_NAMES);
+            Label planetInput = new Label ("Planet: ");
+            planetInput.setPadding(labelInsets);
             ComboBox<String> comboBox = new ComboBox();
             comboBox.getItems().addAll(Planet.PLANET_NAMES);
         
             // SAMPO LAITA TÄSSÄ KOHTAA OLETUSARVOKSI SEN LISTAN EKA
         
-            inputGrid.addRow(row, openLogLabe2, comboBox);
-            // Label
-           // Button button = new Button ();
-          //  button.setOnAction(e -> planetName());
+            inputGrid.addRow(row, planetInput, comboBox);
             comboBox.valueProperty().addListener (
                  (observableValue, oldValue, newValue)-> { simulator.setPlanet(newValue); }
              );
