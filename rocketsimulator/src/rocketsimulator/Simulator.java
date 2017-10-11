@@ -1,26 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rocketsimulator;
 
-/**
- *
- * @author Leo
- */
 public class Simulator {
-
-
-    
+    // ROCKET SPECS
     private double fuelTankCapacity = 0.0;
     private double engineThrust = 0.0;
-    
-    
-    private Planet planet = Planet.MOON;
+       
+    // PLANET FOR TAKEOFF
+    private Planet planet = Planet.EARTH;
     
     public void setPlanet (String planetName)
     {
+        Planet temp = Planet.getPlanet(planetName);
+        planet = temp != null ? temp : planet;
+        System.out.println (temp + "   " + planet);
+        /*
         switch(planetName){
             case "Earth":
                 planet = Planet.EARTH;
@@ -35,6 +28,7 @@ public class Simulator {
                 System.out.println("Hmm");
         }
         System.out.println(planetName);
+*/
     }
 
     
