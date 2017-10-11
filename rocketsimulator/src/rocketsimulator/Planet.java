@@ -1,9 +1,5 @@
 package rocketsimulator;
 
-/**
- *
- * @author Leo Tamminen
- */
 public class Planet
 {
     public final String name;
@@ -12,29 +8,33 @@ public class Planet
     
     private static final double GRAVITATIONAL_CONSTANT = 6.673e-11;
     
-    public static final Planet EARTH = new Planet ("Earth", 5.972e24, 6.378e6);
-    public static final Planet MOON = new Planet ("Moon", 7.348e22, 1.7382e6);
-    public static final Planet MARS = new Planet ("Mars", 6.420e23, 3.397e6);
-    
-    public static final String [] PLANET_NAMES = { EARTH.name, MOON.name, MARS.name };
     private static final Planet [] PLANETS = {
         new Planet ("Earth", 5.972e24, 6.378e6),
         new Planet ("Moon", 7.348e22, 1.7382e6),
         new Planet ("Mars", 6.420e23, 3.397e6)
     };
     
-    public static final Planet getPlanet (String planetName)
+    public static final String [] getPlanetNames ()
     {
-        Planet planet = null;
+        String [] names = new String [PLANETS.length];
         for (int i = 0; i < PLANETS.length; i++)
         {
-            if (planetName.equals(PLANETS[i].name))
-            {
-                planet = PLANETS[i];
-                break;
+            names [i] = PLANETS [i].name;
+        }
+        return names;
+    }
+
+    
+    public static final Planet getPlanet (String planetName)
+    {
+        Planet result = null;
+        for (Planet planet : PLANETS)
+        {
+            if (planet.name.equals(planetName)){
+                result = planet;
             }
         }
-        return planet;
+        return result;
     }
     
     private Planet (String name, double mass, double radius)

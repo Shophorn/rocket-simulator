@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rocketsimulator;
 
 import java.io.FileNotFoundException;
@@ -12,16 +7,13 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- * @author Leo Tamminen
- */
 public class Program extends Application {
     
     private static UI ui;
     
     @Override
-    public void start(Stage primaryStage) {
-        
+    public void start(Stage primaryStage)
+    {    
         Simulator simulator = new Simulator ();
         ui = new UI (simulator);
         
@@ -33,7 +25,8 @@ public class Program extends Application {
         sendMessage ("SpaceY Rocket Launcher");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         launch(args);
     }
     

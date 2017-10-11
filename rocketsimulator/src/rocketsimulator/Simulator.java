@@ -6,36 +6,13 @@ public class Simulator {
     private double engineThrust = 0.0;
        
     // PLANET FOR TAKEOFF
-    private Planet planet = Planet.EARTH;
+    private Planet planet;
     
     public void setPlanet (String planetName)
     {
         Planet temp = Planet.getPlanet(planetName);
         planet = temp != null ? temp : planet;
-        System.out.println (temp + "   " + planet);
-        /*
-        switch(planetName){
-            case "Earth":
-                planet = Planet.EARTH;
-                break;
-            case "Moon":
-                planet = Planet.MOON;
-                break;
-            case "Mars":
-                planet = Planet.MARS;
-                break;
-            default:
-                System.out.println("Hmm");
-        }
-        System.out.println(planetName);
-*/
     }
-
-    
-    public void setFuelConsumption(double consumption){
-//        rocket.setEngineConsumption(consumption);
-    }
-    
 
     public String launch() {
 
@@ -45,16 +22,14 @@ public class Simulator {
         
         Rocket rocket = new Rocket(engine, hull, fuelTank);
         
-        // SAMPO SIIRSIN NÄMÄ TÄNNE
         int time = 0;
         String launchResult = "No result yet.";
         
-        boolean go = true;
-        while(go) {       
-            go = rocket.go(planet);
+        boolean done = false;
+        while(!done) {       
+            done = rocket.go(planet);
             time++;
         }
-        
         
         switch(rocket.getEndStatus()){
             case OUT_OF_FUEL:

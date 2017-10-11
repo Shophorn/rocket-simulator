@@ -1,9 +1,5 @@
 package rocketsimulator;
 
-/**
- *
- * @author Leo Tamminen
- */
 public class Values
 {
     public static final double MIN_ENGINE_POWER = 1.0;

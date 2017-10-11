@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rocketsimulator;
 
-/**
- *
- * @author Leo Tamminen
- */
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
@@ -67,8 +58,6 @@ public class UI extends BorderPane
         addSliderRow ("Fuel Tank Capacity","dm3", Values.MIN_FUEL_TANK_VOLUME, Values.MAX_FUEL_TANK_VOLUME, RocketStat.FUELTANK_CAPACITY);
         
         {
-            int row = nextInputRow ();
-            
             Label openLogLabel = new Label ("Open Log File");
             openLogLabel.setPadding(labelInsets);
 
@@ -80,25 +69,27 @@ public class UI extends BorderPane
                 }
             );
             
-            inputGrid.addRow(row, openLogLabel, openLogToggle);
+            inputGrid.addRow(nextInputRow(), openLogLabel, openLogToggle);
         }
         
         {
-            // SAMPOOOOO
-            int row = nextInputRow();
-            Label planetInput = new Label ("Planet: ");
-            planetInput.setPadding(labelInsets);
-            ComboBox<String> comboBox = new ComboBox();
-            comboBox.getItems().addAll(Planet.PLANET_NAMES);
-        
-            // SAMPO LAITA TÄSSÄ KOHTAA OLETUSARVOKSI SEN LISTAN EKA
-        
-            inputGrid.addRow(row, planetInput, comboBox);
-            comboBox.valueProperty().addListener (
-                 (observableValue, oldValue, newValue)-> { simulator.setPlanet(newValue); }
-             );
+            Label planetLabel = new Label ("Planet: ");
+            planetLabel.setPadding(labelInsets);
             
-          // JA SIT VIEL SIISTI TÄÄ ALUE JA TOLLE LABELILLE KUNNON NIMI, esim planetLabel tms.
+            ComboBox<String> comboBox = new ComboBox();
+            comboBox.getItems().addAll(Planet.getPlanetNames());
+            comboBox.setValue(Planet.getPlanetNames()[0]);
+            simulator.setPlanet(Planet.getPlanetNames()[0]);
+        
+            inputGrid.addRow(nextInputRow(), planetLabel, comboBox);
+            comboBox.setOnAction(
+                (event)-> {
+                    String value = comboBox.getValue();
+                    simulator.setPlanet(value);
+                    printMessage("Launching from " + value);
+                    
+                }
+            );
         }
         
         // OUTPUT
@@ -154,11 +145,6 @@ public class UI extends BorderPane
         ioGrid.getColumnConstraints().add (1, new ColumnConstraints());
         ioGrid.getColumnConstraints().add (2, cConstraint);
         
-        /*
-        RowConstraints rConstraint = new RowConstraints (300);
-        rConstraint.setVgrow(Priority.ALWAYS);
-        ioGrid.getRowConstraints ().addAll(new RowConstraints (), rConstraint);
-        */
         ioGrid.setPadding (labelInsets);
     }
     
