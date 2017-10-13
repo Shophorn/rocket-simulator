@@ -36,8 +36,7 @@ public class Simulator {
                 launchResult = String.format ("Rocket ran out of fuel at: %d s", rocket.getOutOfFuelTime());
                 break;
             case FAILED_TO_TAKEOFF:
-                // Pitäiskö tollanen due to juttu?
-                launchResult = "Rocket failed to take off";// due to: ";
+                launchResult = "Rocket failed to take off";
                 break;
             case ESCAPED_ORBIT:
                 launchResult = "Rocket has escaped the orbit! Congratulation! ";
