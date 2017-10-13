@@ -2,11 +2,8 @@ package rocketsimulator;
 
 public class Engine extends Part 
 {
-    // https://en.wikipedia.org/wiki/Thrust_specific_fuel_consumption#Typical_values_of_SFC_for_thrust_engines
+    // https://en.wikipedia.org/wiki/Thrust_specific_fuel_consumption
     // tsfc here is totally not anything close to proper values, but it works here, so we're using it.
-    
-    // TSFC ongelma on ehkä getThrustissa, kun muutetaan mittakaavaa
-    
     private final static double TSFC = 0.01; // 0.250; // kg /(kN*s), ie. how many kg of propellant is needed to create 1kN thrust for one second
     private final static double THRUST_TO_WEIGHT = 100;
     private final double thrust; // kN
@@ -24,6 +21,7 @@ public class Engine extends Part
 
     public double getThrust()
     {
+        // TSFC ongelma on ehkä getThrustissa, kun muutetaan mittakaavaa
         // convert kN to N
         return thrust * 1_000;
     }

@@ -11,7 +11,13 @@ public class Planet
     private static final Planet [] PLANETS = {
         new Planet ("Earth", 5.972e24, 6.378e6),
         new Planet ("Moon", 7.348e22, 1.7382e6),
-        new Planet ("Mars", 6.420e23, 3.397e6)
+        new Planet ("Mars", 6.420e23, 3.397e6),
+        new Planet ("Venus", 4.875e24, 6.052e6),
+        new Planet ("Mercurius", 3.306e23, 2.439e6),
+        new Planet ("Uranus", 8.686e25, 26.320e6),
+        new Planet ("Neptune", 1.029e26, 24.300e6),
+        new Planet ("Pluto", 1.194e22, 1.150e6),
+        new Planet ("XO-2Nb", 0.597e22, 1.019e6)
     };
     
     public static final String [] getPlanetNames ()

@@ -66,7 +66,7 @@ public class Rocket {
         boolean done = escaped || !goingUp;
         
         // WRITE LOG
-        flightLog += String.format("t:%-5d thrust:%-10.2f drag:%-10.2f accel:%-10.2f speed:%-10.2f fuel:%-10.2f altitude:%-10.2f\r\n",
+        String nextLine = String.format("t:%-5d thrust:%-10.2f drag:%-10.2f accel:%-10.2f speed:%-10.2f fuel:%-10.2f altitude:%-10.2f\r\n",
                 time,
                 thrust,
                 drag,
@@ -76,6 +76,8 @@ public class Rocket {
                 altitude
         );
         time++;
+        flightLog += nextLine;
+        System.out.println(nextLine);
         
         if (!done) {
             altitude += speed;
